@@ -1,12 +1,19 @@
 <script>
+
   export default {
+        fetch(){
+            //prend les valeurs
+            this.$store.dispatch('todos/someAsyncFunc');   
+        },
         methods : {
+
             addTodo(text){
                 console.info("[Container UI] tonga aty oh!!")
-                this.$store.commit("todos/add",text)
+                this.$store.commit("todos/add",text);
             },
             toggle(todo){
-                this.$store.commit("todos/toggle",todo)           }
+                this.$store.commit("todos/toggle",todo)
+            }
         },
         computed :{
             todos(){

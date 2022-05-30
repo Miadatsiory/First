@@ -1,5 +1,7 @@
 <script>
+
     export default {
+
         methods:{
             handleChange(e){
                 console.info("[Add UI] text change to", this.text)
