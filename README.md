@@ -16,54 +16,63 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+Stateless/statefull:
+rah hatsorina : 
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+Statefull : composant avec des states / data
+Statefull : composants sans state/ data les données à afficher sont passées via props
 
 
-### `pages`
+1 HOC : 
+-Les fonctionnalités devraient être dans des components.
+-Les pages ne devraient pas contenir de décration mais devraient faire appels aux composans pour l
+qui servinont pour l'affichage
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+- Les composants : 
+Chaque fonctionnalités devraient avoir un conteneur les des composants d'affichage.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+Roles : 
+Container : 
+ - operations/ traitements
+ - requête
 
-### `plugins`
+UI / affichage:
+devrait être stateless et les données sont passées via props
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+2 SSOT : Single Source of truth ou Un seul Source de Vérité : 
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+Nous devons avoir un seul source de données pour l'appli pour éviter :
+- la répétition des réquetes
+- l'accésibilité des données
+- etc...
 
-### `static`
+concernant notre projet "Vuex" est le responsable de la gestion de store : 
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+Store : 
+    -state : notre seul source de vérité (data global) ... accessible via this.store.state.fichier.nomVar
+    -mutation : pour les fonctions sync add/delete ... appelé via this.$store.commit("fichier/nomFunc",params)
+    -actions : action async (fetch API) .... appelé via this.$store.dispatch("fichier/nomFunc",params)
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+ Exemple :
+projet todos :
+les fonctions pour modifier/ajouter/ lecture du store devrais se faire dans le mutation ou actions du store
+Je vous invite à explorer le projets suivant : 
 
-### `store`
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+Composans : 
+components>Todo
+ =>Container : 
+    Container.vue
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+UI :
+    ->add.vue
+    ->View.vue
+
+Pages:
+    Pages>
+    -> index.vue
+    -> todo.vue
+Store : 
+    store>todos
+
